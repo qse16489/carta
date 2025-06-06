@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная карта Екатеринбурга с музеями</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=d3e575a2-21f0-4c40-9084-e62496f8cd32&lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <button id="show-rubricator-btn" style="position: absolute; top: 55px; right: 10px; padding: 8px 12px; background-color: rgba(255, 255, 255, 0.7); border: none; border-radius: 4px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); cursor: pointer; z-index: 1000; font-family: Arial, sans-serif; font-size: 14px; transition: all 0.3s ease;">
+        Фильтр
+    </button>
+    
+    <button id="clear-route-btn" style="position: absolute; top: 55px; left: 10px; padding: 8px 12px; background-color: rgba(220, 220, 220, 0.7); border: none; border-radius: 4px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); cursor: pointer; z-index: 1000; font-family: Arial, sans-serif; font-size: 14px; transition: all 0.3s ease; display: none;">
+        Очистить маршрут
+    </button>
+    
+    <div class="rubricator" id="rubricator" style="display: none;">
+        <h3>Фильтр</h3>
+        <button class="rubricator-btn active" data-category="all">Все</button>
+        <button class="rubricator-btn" data-category="природа">Природа</button>
+        <button class="rubricator-btn" data-category="архитектура">Архитектура</button>
+        <button class="rubricator-btn" data-category="искусство">Искусство</button>
+        <button class="rubricator-btn" data-category="история">История</button>
+    </div>
+    
+    <div class="fullscreen-image">
+        <span class="close-btn">&times;</span>
+        <img id="full-image" src="" alt="Полноразмерное изображение">
+    </div>
+    
+    <button id="show-calendar-btn" style="position: absolute; top: 10px; left: 380px; padding: 8px 12px; background-color: rgba(255, 255, 255, 0.7); border: none; border-radius: 4px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); cursor: pointer; z-index: 1000; font-family: Arial, sans-serif; font-size: 14px; transition: all 0.3s ease;">
+        Календарь событий
+    </button>
+
+    <div id="calendar" style="display: none; position: absolute; top: 70px; left: 270px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); z-index: 1000;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <button id="prev-month-btn" class="month-btn">←</button>
+            <h3 id="month-year"></h3>
+            <button id="next-month-btn" class="month-btn">→</button>
+        </div>
+        <div id="calendar-days">
+            <!-- Дни месяца будут динамически добавлены сюда -->
+        </div>
+    </div>
+    
+    <div id="events-modal" class="events-modal">
+    <div class="events-modal-content">
+        <span class="close-events-modal">&times;</span>
+        <h3 id="events-date"></h3>
+        <ul id="events-list"></ul>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
